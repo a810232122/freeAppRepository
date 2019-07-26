@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://www.cocoachina.com/articles/23780 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="svWzDxdOO3rGRWpxdxziTubYnDRTl2vKiQ81cmNG">
+    <title>Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区</title>
+  
+  <meta name="keywords" content="iOS,Injection,热重载">
+  <meta name="description" content="在介绍热重载黑魔法前,先再次安利一波John Holdsworth的这个成吨提高iOS开发效率的工具Injection，Appstore可以直接免费下载，最新一版是5月17日更新。">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="”X-UA-Compatible”" content="”IE=edge,chrome=1″">
+  <link rel="icon" href="https://jdi.cocosbcx.net/image/cocoachina/cocoachina.ico" type="image/x-icon">
+  <!--收藏夹显示图标-->
+  <link rel="shortcut icon" href="https://jdi.cocosbcx.net/image/cocoachina/cocoachina.ico" type="image/x-icon">
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="http://fonts.gstatic.com/">
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/css" rel="stylesheet">
+  <!-- Styles -->
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/cocoachina.css" rel="stylesheet">
+
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/baidu.search.css" rel="stylesheet">
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/swiper.min.css" rel="stylesheet">
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/reset.css" rel="stylesheet">
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/common.css" rel="stylesheet">
+  <link href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/account.css" rel="stylesheet">
+
+
+  
+
+      <link rel="stylesheet" href="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/detail.css">
+
+</head>
+
+<body>
+  <div id="app" class="">
+    <div class="wrap">
+      <header class="header">
+    <div class="header" id="header">
+        <div class="header-wrap">
+            <ul class="header-left lt">
+                <li>
+                    <a href="http://www.cocoachina.com/" target="_self">
+                        <img class="logo" src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/new_logo.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.cocoachina.com/" target="_self">首页</a>
+                </li>
+                
+                    
+                
+                <li>
+                    <a href="http://www.cocoachina.com/bbs/" target="_blank">论坛</a>
+                </li>
+                <li>
+                    <a href="http://code.cocoachina.com/" target="_blank">代码</a>
+                </li>
+                <li>
+                    <a href="http://tools.cocoachina.com/" target="_blank">工具</a>
+                </li>
+                <li>
+                    <a href="http://blog.cocoachina.com/" target="_blank">博客</a>
+                </li>
+                
+                    
+                
+            </ul>
+            <ul class="header-right rt">
+              
+                
+                
+              
+              
+                  
+                  
+              
+                              <div class="info">
+                  <div class="register">
+                      <a href="http://www.cocoachina.com/auth/register" target="_self">注册</a>
+                  </div>
+                  <div class="login">
+                      <a class="active" href="http://www.cocoachina.com/auth/login" target="_self">登录</a>
+                  </div>
+                </div>
+                          </ul>
+        </div>
+        <div class="line-gray"></div>
+
+        <div class="concat">
+
+        <div class="kefu">
+                官方<br>客服
+                <div class="ma">
+                </div>
+            </div>
+            <div class="dingyuhao">
+                订阅号
+                <div class="ma"></div>
+            </div>
+            <a href="http://www.cocoachina.com/articles/23780#header" class="top-btn" id="top_btn" style="display: block;"></a>
+        </div>
+    </div>
+</header>
+      <main class="main">
+            <div class="detail">
+        <div class="left lt">
+            <div class="articles">
+                <h3 class="article-title">Injection：iOS热重载背后的黑魔法</h3>
+                <div class="auth-info">
+                    <span>老峰</span>
+                    <span>2018-06-13 10:33:24</span>
+                    <span class="read-num">5069</span>
+                </div>
+                <div class="details" id="details">
+                    <p>在介绍热重载黑魔法前,先再次安利一波John Holdsworth的这个成吨提高iOS开发效率的工具Injection，Appstore可以直接免费下载，最新一版是5月17日更新。废话不多说，先看效果：</p><p style="text-align: center;"><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528855590989086.gif" title="1528855590989086.gif" _src="http://api.cocoachina.com/uploads//20180613/1528855590989086.gif" alt="640.gif"></p><p>没错几乎是Xcode这边改代码，模拟器那边瞬间见效果，尤其是我们的产品迭代几年后，每次编译都巨慢，是不是设计妹子让你微调UI时你又可以秀的飞起了，从此摆脱coding五分钟编译2小时的囧境。</p><p><span style="font-size: 20px;"><strong>使用方法</strong></span></p><p>虽然今天的主线并非工具的安装使用，我还是简单介绍下，Appstore下好InjectionIII后，在我们的项目中applicationDidFinishLaunching方法加入如下代码</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528855650351737.png" _src="http://api.cocoachina.com/uploads//20180613/1528855650351737.png" title="1528855650351737.png" alt="TIM截图20180613100851.png"></p><p>然后在任意继承自OC的类中加入如下代码，在我们修改了对应文件按下COMMAND + S后，Injjection就开始编译修改过的文件为动态库，然后我们在Injected方法内做UI reload工作，即可重绘UI。</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528855690805291.png" title="1528855690805291.png" _src="http://api.cocoachina.com/uploads//20180613/1528855690805291.png" alt="TIM截图20180613100935.png"></p><p>接下来是这次分享的重点，Injection到底如何实现热重载，采用了什么样的黑魔法？</p><p><span style="font-size: 20px;"><strong>热重载原理</strong></span></p><p>组内的同学有在玩这个玩具，下午茶歇，大家开始讨论这个工具如何实现，出于好奇，我抽空仔细分析了下，在分析这个玩具的实现原理时，我竟然没想到直接对着源码看（作者真是好人，这么香的软件，竟然免费而且开源，就算每次下载1元，也能致富吧），而是采用逆向分析的技术，后来才发现github有源码，对着源码看了下我之前的分析的八九不离十。</p><p>先带大家把整个热重载过程理一遍，首先我们修改一个文件，Injection工具会通过File Watcher监听观察文件改动，然后将改动的文件编译，打包，这时候Injection工具会给我们的App发个消息，兄弟我这边ready了，你更新下代码；我们的App收到消息后更新代码后再给Injection个反馈，好的大佬，代码已经更新，UI也刷新了；Injection收到反馈后，工具会变绿，完美的闭环式沟通。注意这里的过程，App要收消息，那么必须要有对应的代码，如何实现？App的代码如何更新？</p><p>我们知道如果要让既有App，执行自己的代码可以通过注入动态库，静态的注入可以使用optool工具修改MachO的Load Commands然后重签，运行时可以使用dlopen或者Bundle(path: "**.bundle").load()加载，作者也正是采用这种方式，文中第一图，工具初始化，就是为了实现注入动态库。</p><p>这里有一点需要说明一下，模拟器下iOS可加载Mac任意文件，不存在沙盒的说法，而真机设备如果加载动态库，只能加载App.content目录下的，换句话说，这个工具只支持模拟器，为了验证我的说法使用lldb image list -o -f</p><p>查看执行这句代码后，动态库列表中多了iOSInjection，就算我们不看源码，用脚想都知道，这个库会负责和mac Injection通信。</p><p>继续跟着老峰的思路，我研究时是用Hopper，反编译iOSInjection，这里直接看源码，可见iOSInjection确实有负责即时通信的代码SimpleSocket，这里贴部分代码有兴趣的同学可去文尾链接读源码</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528856028839327.png" _src="http://api.cocoachina.com/uploads//20180613/1528856028839327.png" title="1528856028839327.png" alt="TIM截图20180613101441.png"></p><p>建立连接后Injection就可以和我们的App愉快的沟通了，接下来我们看，Injection如何实现代码更新，我们去修改下View的backgroundColor然后保存，这时控制台，可见如下日志：</p><blockquote><p>*** Compiling /Users/apple/Work Project/modules/Library/LibraryManagerController.swift ***</p><p>Loading .dylib - Ignore any duplicate class warning...</p><p>objc[70014]: Class _DraftLibraryManagerController is implemented in both /Users//Library/Developer/CoreSimulator/Devices/DC5118EC-D835/data/Containers/Bundle/Application/EB9E4DA7/Collector.app/Collector (0x10e31c530) and /Users/Library/Containers/com.johnholdsworth.InjectionIII/Data/eval104.dylib (0x13b023fa8). One of the two will be used. Which one is undefined.</p></blockquote><p>通过上边日志 可知 ：</p><ol class=" list-paddingleft-2" style="list-style-type: decimal;"><li><p>保存后重新编译了我们修改的类文件LibraryManagerController.swift</p></li><li><p>我们编译了一个同名的类，并且忽略了编译器duplicate class警告</p></li><li><p>在eval101.dylib，Collector中有2份一样的类，只是方法实现不同</p></li></ol><p>这里我们可以看到修改后的文件被编译为了eval101.dylib动态库，当UI更新后使用lldb image list -o -f 可见修改后的类文件确实以动态库的方式注入了我们的App内。</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528856138730972.png" title="1528856138730972.png" _src="http://api.cocoachina.com/uploads//20180613/1528856138730972.png" alt="TIM截图20180613101659.png"></p><p>通过阅读Mac端 Injection源码可知观察到文件修改后InjectionServer会执行rebuildClass，成功编译后生成eval101.dylib，然后通过writestring给我们的App发"INJECT"消息，通知App更新代码</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528856245496664.png" _src="http://api.cocoachina.com/uploads//20180613/1528856245496664.png" title="1528856245496664.png" alt="TIM截图20180613101849.png"></p><p>接下来看我们的App收到消息后做了什么，可以看到收到Inject后调了SwiftInjection 的inject(tmpfile: String)方法</p><p>我们看下SwiftInjection 的inject(tmpfile: String)方法源码，可知，通过</p><p>SwiftEval.instance.loadAndInject方法dlopen加载eval101.dylib动态库，这样就把修改后的代码注入了我们的App，然后通过OC runtime 的class_replaceMethod把整个类的实现方法都替换了，然后再调SwiftInjected.injected我们的类收到消息开始重绘UI，然后给给Mac Injection发反馈消息。</p><p><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528856325415727.png" title="1528856325415727.png" _src="http://api.cocoachina.com/uploads//20180613/1528856325415727.png" alt="TIM截图20180613102010.png"></p><p>好了，整个Injection整个实现流程大概就这样，当然里边还有很多细节的东西，需要读者们自己探索研究发现。iOS热重载原理并不复杂，了解掌握这些原理或许我们可以自己做些有趣的玩具。</p><p><span style="font-size: 20px;"><strong>John Holdsworth</strong></span></p><p>最后介绍下Injection的作者John Holdsworth，1962年出生的，1984年读大学，现在56岁，大概有20多年的开发经验，2008年开始学iOS也就是46岁开始学iOS的，你还好意思以老为借口拒绝学新知识么，他的年龄和我们父辈年龄差不太多，附英文介绍及社区活跃度，太强了每天都在Coding，真心佩服这样的大佬，致敬！</p><p>AppleOS Software Engineer</p><p>From assembly language though scripting languages, Java(Script) and SQL to Objective-C(++) and Swift, John has the answer to your low level engineering and performance and tuning requirements. Available for remote work in the London or US timezone John has been an independent iOS and MacOS dev since 2008.</p><p style="text-align: center;"><img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/1528856389458027.png" title="1528856389458027.png" _src="http://api.cocoachina.com/uploads//20180613/1528856389458027.png" alt="TIM截图20180613102111.png"></p>
+                </div>
+            </div>
+        </div>
+       <div class="right rt">
+    <div class="atticle-wrap">
+        <ul class="hot-article">
+            <div class="title-wrap">
+                <h3>
+                    <span class="title">论坛热帖</span>
+                    <div class="rt">
+                                <span class="title-btn article-type active" onclick="onChangeHotArticleType(&#39;week_hot_bbs&#39;)" id="week_hot_bbs">本周最热</span>
+                        <i class="cut"></i>
+                        <span class="title-btn article-type" onclick="onChangeHotArticleType(&#39;month_hot_bbs&#39;)" id="month_hot_bbs">本月最热</span>
+                    </div>
+                </h3>
+            </div>
+            <div class="week_hot_bbs" style="display: block;">
+                                    <li>
+                        <span class="num">1</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793926.html" target="_blank">
+                                <p class="item-title">刚刚重新看了下很多大牛的老帖子，感触良多！</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">2</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793940.html" target="_blank">
+                                <p class="item-title">XCode 10.2升级到10.3后编译报错</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">3</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793953.html" target="_blank">
+                                <p class="item-title">我的iOS生涯</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">4</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793934.html" target="_blank">
+                                <p class="item-title">难住小弟的开发问题</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">5</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793966.html" target="_blank">
+                                <p class="item-title">干了四年，换工作技术面过了之后要9k被拒绝？郑州这地方真的让人心累！</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">6</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793958.html" target="_blank">
+                                <p class="item-title">哪位大神能救救我，两天都没搞定这个问题。</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">7</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793936.html" target="_blank">
+                                <p class="item-title">iOS 与 Flutter 混合开发 跳转Flutter的问题</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">8</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793963.html" target="_blank">
+                                <p class="item-title">如果不做开发了，会去选择做啥</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">9</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793935.html" target="_blank">
+                                <p class="item-title">专业版、极速版是怎么做？</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">10</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793941.html" target="_blank">
+                                <p class="item-title">今天更新了xcode，然后就。。。</p>
+                            </a>
+                        </div>
+                    </li>
+                            </div>
+            <div class="month_hot_bbs" style="display: none;">
+                                    <li>
+                        <span class="num">1</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793874.html" target="_blank">
+                                <p class="item-title">俺也来分享下自己的iOS生涯</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">2</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793801.html" target="_blank">
+                                <p class="item-title">失业一段时间了，想找iOS兼职开发或私活</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">3</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793909.html" target="_blank">
+                                <p class="item-title">美国生活指南（穷人版）——工作买房买车的真实经历</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">4</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793829.html" target="_blank">
+                                <p class="item-title">华为基本拒绝国内个人开发者了吗？</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">5</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793832.html" target="_blank">
+                                <p class="item-title">开发者生存现状调查，你的开发者月收入多少刀？</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">6</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793825.html" target="_blank">
+                                <p class="item-title">求个坑位！！！</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">7</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793778.html" target="_blank">
+                                <p class="item-title">iOS 怎么加密啊</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">8</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793843.html" target="_blank">
+                                <p class="item-title">一波未平一波又起</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">9</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793910.html" target="_blank">
+                                <p class="item-title">App行情</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">10</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/bbs/read.php?tid-1793765.html" target="_blank">
+                                <p class="item-title">一个应用的广告被谷歌停了, 求各位大大帮忙分析下</p>
+                            </a>
+                        </div>
+                    </li>
+                            </div>
+        </ul>
+        <ul class="hot-article">
+            <div class="title-wrap">
+                <h3>
+                    <span class="title">热门文章</span>
+                    <div class="rt">
+                                <span class="title-btn article-type active" onclick="onChangeHotArticleType(&#39;week_hot&#39;)" id="week_hot">本周最热</span>
+                                      <i class="cut"></i>
+                        <span class="title-btn article-type" onclick="onChangeHotArticleType(&#39;month_hot&#39;)" id="month_hot">本月最热</span>
+                    </div>
+                </h3>
+            </div>
+            <div class="week_hot" style="display: block;">
+                                    <li>
+                        <span class="num">1</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27771">
+                                <p class="item-title">全球区块链游戏生态大会8月2日将于上海船厂1862举办</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">2</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27887">
+                                <p class="item-title">一步一步构建iOS持续集成:Jenkins+GitLab+蒲公英+FTP</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">3</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27816">
+                                <p class="item-title">Linux 之父拒绝 996，Swift、Python 之父痴迷深夜编程，程序员之神的 24 小时！</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">4</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/28058">
+                                <p class="item-title">打造完备的iOS组件化方案：如何面向接口进行模块解耦？</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">5</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27774">
+                                <p class="item-title">Google 是如何招聘人才的？</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">6</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/28073">
+                                <p class="item-title">iPhone 正式版系统更新，终于可以迁移数据了！</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">7</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/28333">
+                                <p class="item-title">上天保佑搞迷信的互联网人</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">8</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27987">
+                                <p class="item-title">[译] Swift 模块中的 API 污染</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">9</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27773">
+                                <p class="item-title">RedMonk 2019 年 6 月编程语言排行：TypeScript 首次进入前十</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">10</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/28305">
+                                <p class="item-title">自定义View都写不好还做什么iOS开发</p>
+                            </a>
+                        </div>
+                    </li>
+                            </div>
+            <div class="month_hot" style="display: none;">
+                                    <li>
+                        <span class="num">1</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27091">
+                                <p class="item-title">SwiftUI or Flutter ?</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">2</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27054">
+                                <p class="item-title">有了这些你们团队的代码肯定规范</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">3</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27090">
+                                <p class="item-title">Flutter 与 iOS 原生 WebView 对比</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">4</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27093">
+                                <p class="item-title">Mac端Flutter的环境配置看这一篇就够了</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">5</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27334">
+                                <p class="item-title">iPhone销量一路下滑 苹果为何依旧乐观</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">6</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27227">
+                                <p class="item-title">iOS中常见Crash总结</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">7</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27623">
+                                <p class="item-title">Flutter 1.7 发布，新增一些漂亮的组件</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">8</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27081">
+                                <p class="item-title">基于JS的高性能Flutter动态化框架MXFlutter</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">9</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27296">
+                                <p class="item-title">2019上半年应用营收数据：iOS比安卓高80%</p>
+                            </a>
+                        </div>
+                    </li>
+                                    <li>
+                        <span class="num">10</span>
+                        <div class="items">
+                            <a href="http://www.cocoachina.com/articles/27676">
+                                <p class="item-title">微信们正在成为“被模仿者”！中国互联网现状及趋势报告</p>
+                            </a>
+                        </div>
+                    </li>
+                            </div>
+        </ul>
+
+
+
+        <ul class="games">
+            <div><a target="_blank" href="http://shouji.360tpcdn.com/180522/cef037cda03e38ee83d66675c65acf69/cc.thedream.qinsmoon.qihu_67.apk">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/qsmy.png" alt="">
+                    <span>秦时明月</span>
+                </a>
+            </div>
+            <div><a target="_blank" href="http://shouji.360tpcdn.com/160116/d882244e6df8eade692e5e550f9664fe/com.chukong.fanren.chs.qihu_17.apk">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/frxz.png" alt="">
+                    <span>凡人修真</span>
+                </a>
+
+            </div>
+            <div><a target="_blank" href="http://shouji.360tpcdn.com/171206/1f50aabc6afd35716052d2fde401e68e/com.tuo3.hjdt.qihu_19.apk">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/hjdtol.png" alt="">
+                    <span>合金弹头OL</span>
+                </a>
+            </div>
+            <div><a target="_blank" href="http://wscs.coco.cn/">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/wscs.png" alt="">
+                    <span>我是车神</span>
+                </a>
+            </div>
+            <div><a target="_blank" href="http://shouji.360tpcdn.com/180607/6b6efacb3b2e3074f9a1757ce582b03e/com.playrix.township.chukong.qihu_651.apk">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/mxcz.png" alt="">
+                    <span>梦想城镇</span>
+                </a>
+            </div>
+            <div><a target="_blank" href="http://111.13.3.38/appdl.hicloud.com/dl/appdl/application/apk/35/358cdedf75ce43658a807be1c2904988/com.coco.wlsswz.HUAWEI.1703061302.apk?mkey=5b2cb831618d6e2a&amp;f=2664&amp;c=0&amp;sign=portal@portal1529650882157&amp;source=portalsite&amp;p=.apk">
+                    <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/wlss.png" alt="">
+                    <span>亡灵杀手外传</span>
+                </a>
+            </div>
+        </ul>
+    </div>
+</div>
+    </div>
+      </main>
+      <div class="cover-content"></div>
+      <footer class="footer-content">
+    <div class="footer">
+        <section class="box">
+        <section class="bottom-list">
+          <ul>
+            <li>条款说明</li>
+            <li>
+              <a href="http://www.cocoachina.com/aboutus/agrement/index.html" target="_blank">用户协议</a>
+            </li>
+            <li>
+              <a href="http://www.cocoachina.com/aboutus/yinsi/index.html" target="_blank">隐私协议</a>
+            </li>
+            <li>
+              <a href="http://www.cocoachina.com/aboutus/quanli/index.html" target="_blank">权利声明</a>
+            </li>
+          </ul>
+          <ul>
+            <li>关于</li>
+            <li>
+              <a href="http://www.cocoachina.com/aboutus/index.html" target="_blank">关于我们</a>
+            </li>
+            <li>
+              <a href="http://www.cocoachina.com/aboutus/index.html" target="_blank">商务合作</a>
+            </li>
+            <li>
+              <a href="http://www.cocoachina.com/corps" target="_blank">合作伙伴</a>
+            </li>
+          </ul>
+          <ul>
+            <li>产品</li>
+            <li>
+            <a href="http://www.cocoachina.com/bbs/" target="_blank">论坛</a>
+            </li>
+            <li>
+              <a href="http://code.cocoachina.com/" target="_blank">资源</a>
+            </li>
+            <li>
+              <a href="http://blog.cocoachina.com/" target="_blank">博客</a>
+            </li>
+          </ul>
+          <ul>
+            <li>支持</li>
+            <li class="issue cursor">
+              <div class="ma"></div>
+            <a target="_blank">常见问题</a>
+            </li>
+            <li class="suggest cursor">
+              <div class="ma"></div>
+              <a target="_blank">产品建议</a>
+            </li>
+          </ul>
+          <ul class="medias cursor">
+            <li>官方媒体</li>
+            <li>
+              <a href="https://weibo.com/cocoachina" target="_blank">
+                <span>官方微博</span> 
+                 <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/wechat.png" alt="">
+              </a> 
+            </li>
+            <li class="wechat cursor">
+              <div class="ma"></div>
+              <a target="_blank">
+                <span>官方微信</span>
+                <img src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/weibo.png" alt="">
+              </a>
+            </li>
+          </ul>
+        </section>
+        </section>
+
+        <div class="record-number">
+            <a class="item" href="http://www.miibeian.gov.cn/" target="_blank">
+                <span>京ICP备&nbsp;&nbsp;1006519号</span>
+                <span> 京ICP证&nbsp;&nbsp;100954号</span>
+            </a>
+            <a class="item img" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502037140" target="_blank">
+                <img class="police" src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/gongan.jpg" alt="">
+                <span>京公安网备&nbsp;&nbsp;1101502037140号</span>
+            </a>
+            <a class="item img" href="http://182.131.21.137/ccnt-apply/admin/business/preview/business-preview!lookUrlRFID.action?main_id=A580B24B1AE846CE9DA949026D63939F" target="_blank">
+                <img class="jing" src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/jingwen.png" alt="">
+                <span>京网文[2018]6281-491号</span>
+            </a>
+        </div>
+        <p class="p1">北京触控科技有限公司版权所有 @2018  Chikong Technologes,Inc</p>
+    </div>
+    <section class="links-box">
+      <section class="links">
+      <div class="link">
+        <div class="title">
+          友情链接：
+        </div>
+        <ul>
+            <li><a href="http://www.cocoachina.com/articles/23780#">换友情链接请加客服微信</a></li>
+            <li><a href="https://www.chaindd.com/" target="_blank">链得得</a></li>
+            <li><a href="https://juejin.im/" target="_blank">掘金</a></li>
+            <li><a href="https://www.youmi.net/" target="_blank">有米</a></li>
+            <li><a href="http://www.testin.cn/" target="_blank">Testin</a></li>
+            <li><a href="http://www.apicloud.com/" target="_blank">APICloud</a>
+            </li><li><a href="http://www.jpush.cn/" target="_blank">极光推送</a></li>
+            <li><a href="https://store.cocos.com/" target="_blank">Cocos商店</a></li>
+            <li><a href="http://link.cocos.com/" target="_blank">Cocos Link</a></li>
+            <li><a href="http://www.tuicool.com/" target="_blank">推酷网</a></li>
+            <li><a href="http://www.youxituoluo.com/" target="_blank">游戏陀螺</a></li>
+            <li><a href="http://www.9miao.com/" target="_blank">9秒社团</a></li>
+            <li><a href="http://www.sykong.com/" target="_blank">手游那点事</a></li>
+            <li><a href="https://developer.apple.com/" target="_blank">苹果开发者中心</a></li>
+            <li><a href="http://www.cocos2d-x.org/" target="_blank">cocos2d-x</a></li>
+            <li><a href="http://www.nooidea.com/" target="_blank">Nooidea.com</a></li>
+            <li><a href="http://www.iapps.im/" target="_blank">爱应用</a></li>
+            <li><a href="https://www.chandashi.com/" target="_blank">蝉大师</a></li>
+            <li><a href="https://www.dingxiang-inc.com/" target="_blank">顶象科技</a></li>
+            <li><a href="http://www.openinstall.io/" target="_blank" title="">openinstall</a></li>
+            <li><a href="https://www.qiniu.com/" target="_blank">七牛云</a></li>                                                                                                                                                                                                 
+        </ul>
+      </div>
+      <div class="show more-list cursor">
+        <span>展开</span> 
+        <p class="down-arrow"></p>
+      </div>
+      <div class="show normal-list cursor" style="display:none">
+        <span>收起</span> 
+        <p class="up-arrow"></p>
+      </div>
+    </section>
+    </section>
+</footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+
+  <script type="text/javascript" async="" src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/analytics.js"></script><script src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/push.js"></script><script src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/hm.js"></script><script src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/jquery-3.3.1.min.js"></script>
+  <script src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/swiper.min.js"></script>
+  <script src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/index.js" defer=""></script>
+  <style>
+.flashy {
+    font-family: Arial, sans-serif;
+    padding: 11px 30px;
+    border-radius: 4px;
+    font-weight: 400;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.flashy--success {
+    background-color: #99c93d;
+    color: #fff;
+}
+
+.flashy--warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.flashy--muted {
+    background: #eee;
+    color: #3a3a3a;
+    border: 1px solid #e2e2e2;
+}
+
+.flashy--muted-dark {
+    background: #133259;
+    color: #e2e1e7;
+}
+
+.flashy--info a,
+.flashy--primary-dark a {
+    color: #fff;
+}
+
+.flashy--error {
+    background: #d14130;
+    color: #fff;
+}
+
+.flashy--primary {
+    background: #573e81;
+}
+
+.flashy--primary-dark {
+    background: linear-gradient(to right, #133259 30%, #0d233e);
+}
+
+.flashy--info {
+    background: #00baf3;
+}
+
+.flashy > ul {
+    padding-left: 15px;
+}
+
+.flashy > p:only-of-type {
+    margin-bottom: 0;
+}
+
+.flashy i {
+    margin-right: 8px;
+    position: relative;
+    top: 6px;
+}
+
+.flashy .flashy__body {
+    color: inherit;
+}
+
+@media  only screen and (max-width:1050px) {
+    .flashy {
+        text-align: center;
+        right: 0;
+        left: 50%;
+        width: 300px;
+        margin-left: -150px;
+    }
+}
+</style>
+
+<script>
+    function flashy(message, link) {
+        var template = $($("#flashy-template").html());
+        $(".flashy").remove();
+        template.find(".flashy__body").html(message).attr("href", link || "#").end()
+         .appendTo("body").hide().fadeIn(300).delay(2800).animate({
+            marginRight: "-100%"
+        }, 300, "swing", function() {
+            $(this).remove();
+        });
+    }
+</script>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="./Injection：iOS热重载背后的黑魔法 - CocoaChina_一站式开发者成长社区_files/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-68950821-1');
+  </script>
+
+  <script>
+    $('.header-right').mousemove(function () {
+      if ($(this).find('.info-center').is(':animated') == false) {
+        $(this).find('.info-center').slideDown('normal');
+        if($('.info-detail').length){
+          $(this).height(206);
+        }
+      }
+    });
+    $('.header-right').mouseleave(function () {
+      $(this).find('.info-center').slideUp('normal');
+      $(this).height(62);
+    });
+            //  $('.header-right').hover(function () {
+            //  $(this).children('.info-center').slideToggle();
+            //  });
+  </script>
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?88399e4c4cf744609c4fc8c3a8935691";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+  
+
+
+</body></html>

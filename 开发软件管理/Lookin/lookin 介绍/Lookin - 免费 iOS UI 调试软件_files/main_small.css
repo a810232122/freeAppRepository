@@ -1,0 +1,438 @@
+@charset "UTF-8";
+/**
+ * main.scss 项目总样式文件
+ * @author Hughkli
+ * @date 2019-07-04
+ *
+ */
+.lk_sprite{
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+.lk_sprite_arrow{
+    background-image: url(../images/sprite.f5d2a11964.png);
+    background-position: -43px -36px;
+    width: 5px;
+    height: 10px;
+}
+.lk_sprite_download{
+    background-image: url(../images/sprite.f5d2a11964.png);
+    background-position: 0 -36px;
+    width: 12px;
+    height: 14px;
+}
+.lk_sprite_headerLogo{
+    background-image: url(../images/sprite.f5d2a11964.png);
+    background-position: 0 0;
+    width: 91px;
+    height: 26px;
+}
+.lk_sprite_indicator{
+    background-image: url(../images/sprite.f5d2a11964.png);
+    background-position: -22px -36px;
+    width: 11px;
+    height: 10px;
+}
+.lk_sprite_indicator_gray{
+    background-image: url(../images/sprite.f5d2a11964.png);
+    background-position: -58px -36px;
+    width: 5px;
+    height: 10px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 192dpi){
+    .lk_sprite_arrow{
+        background-image: url(../images/sprite_2x.d11ef12fbf.png);
+        background-position: -43px -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_download{
+        background-image: url(../images/sprite_2x.d11ef12fbf.png);
+        background-position: 0 -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_headerLogo{
+        background-image: url(../images/sprite_2x.d11ef12fbf.png);
+        background-position: 0 0;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_indicator{
+        background-image: url(../images/sprite_2x.d11ef12fbf.png);
+        background-position: -22px -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_indicator_gray{
+        background-image: url(../images/sprite_2x.d11ef12fbf.png);
+        background-position: -58px -36px;
+        background-size: 91px 50px;
+    }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3/1), only screen and (min-resolution: 3dppx){
+    .lk_sprite_arrow{
+        background-image: url(../images/sprite_3x.37c41e3f65.png);
+        background-position: -43px -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_download{
+        background-image: url(../images/sprite_3x.37c41e3f65.png);
+        background-position: 0 -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_headerLogo{
+        background-image: url(../images/sprite_3x.37c41e3f65.png);
+        background-position: 0 0;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_indicator{
+        background-image: url(../images/sprite_3x.37c41e3f65.png);
+        background-position: -22px -36px;
+        background-size: 91px 50px;
+    }
+    .lk_sprite_indicator_gray{
+        background-image: url(../images/sprite_3x.37c41e3f65.png);
+        background-position: -58px -36px;
+        background-size: 91px 50px;
+    }
+}
+/**
+ * var.scss 变量
+ * @author Hughkli
+ * @date 2019-07-04
+ *
+ * --- function ----
+ * #function QMUI 功能相关
+ *
+ * --- common ----
+ * #common 通用
+
+ * --- component ----
+ * #button 按钮组件
+ * #dialog 对话框组件
+ * #mask 遮罩层组件
+ * #dropdownMenu 下拉菜单组件
+ * #tab 选项卡组件
+ * #inputText、#textarea 文本输入组件
+ *
+ */
+/**
+ * Tencent is pleased to support the open source community by making QMUI Web available.
+ * Copyright (C) 2019 THL A29 Limited, a Tencent company. All rights reserved.
+ * Licensed under the MIT License (the "License"); you may not use this file except in compliance
+ * with the License. You may obtain a copy of the License at
+ *
+ * http://opensource.org/licenses/MIT
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * _qmui.scss QMUI 总样式文件
+ * @author Kayo
+ * @date 2014-10-31
+ *
+ */
+/**
+ * _mixin.scss
+ * @author Kayo
+ * @date 2014-10-31
+ *
+ */
+/**
+ * _tool.scss 常用工具方法
+ * @author Kayo
+ * @date 2015-08-23
+ *
+ */
+/**
+ * _reset.scss
+ * @author Kayo
+ * @date 2014-10-30
+ *
+ * #reset
+ * #html5
+ */
+/* #reset */
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, pre, form, fieldset, legend {
+    margin: 0;
+}
+
+ul, ol, fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+th, td {
+    padding: 0;
+}
+
+table {
+    font-size: inherit;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.5;
+    background: #000000;
+    color: #fff;
+}
+
+h1, h2, h3, h4 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+body, input, textarea, select, button {
+    font-family: "Helvetica Neue", Helvetica, Verdana, san-serif;
+    outline: none;
+    -webkit-text-size-adjust: none;
+}
+
+input, textarea, select, button {
+    font-size: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+    color: #2685D2;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(105, 186, 255, 0.13);
+}
+
+:focus {
+    outline: none;
+}
+
+/* #html5 HTML5 元素的支持 */
+article, aside, details,
+figcaption, figure,
+footer, header, hgroup,
+main, nav, section,
+summary {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+
+/**
+ * _function.scss
+ * @author Kayo
+ * @date 2014-11-17
+ */
+.qui_txtNormal {
+    font-weight: normal !important;
+}
+
+.qui_txtBold {
+    font-weight: bold !important;
+}
+
+.qui_txtLeft {
+    text-align: left !important;
+}
+
+.qui_txtRight {
+    text-align: right !important;
+}
+
+.qui_txtUnderline {
+    text-decoration: underline !important;
+}
+
+.qui_txtUnderlineNone {
+    text-decoration: none !important;
+}
+
+.qui_txtOverflow {
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    word-break: break-all;
+    word-wrap: normal;
+}
+
+.qui_clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+}
+
+.qui_txtNowrap {
+    white-space: nowrap !important;
+}
+
+.qui_layoutLeft {
+    float: left !important;
+}
+
+.qui_layoutRight {
+    float: right !important;
+}
+
+.qui_displayNone {
+    display: none !important;
+}
+
+.body {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.title_logo {
+    margin: 0 auto;
+    width: 30%;
+    max-width: 154px;
+}
+
+.title_text {
+    width: 95%;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 13px auto 0;
+}
+
+.download {
+    margin-top: 20px;
+}
+
+.download_btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100px;
+    margin: 0 auto;
+    background: white;
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    padding: 5px 12px 5px 8px;
+    border-radius: 6px;
+}
+
+.download_btn .lk_sprite {
+    margin-right: 8px;
+}
+
+.download_btn:hover {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.previewImg {
+    margin-top: 30px;
+    width: 90%;
+    max-width: 1120px;
+}
+
+.previewImg_Mobile {
+    display: inline-block !important;
+}
+
+.intro {
+    width: 90%;
+    margin: 100px auto 100px;
+    text-align: left;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.intro p {
+    padding: 8px 0;
+}
+
+.sec_Odd {
+    background-color: #161718;
+}
+
+.sec_Even {
+    background-color: #000000;
+    text-align: right;
+}
+
+.sec_cnt {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0 70px;
+    overflow: hidden;
+}
+
+.sec_cnt_img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.sec_cnt_txt {
+    margin: 0px auto 80px;
+    text-align: left;
+}
+
+.sec_cnt_txt p {
+    padding-bottom: 6px;
+}
+
+.sec_cnt_txt_title {
+    font-size: 14px;
+}
+
+.sec_cnt_txt_desc {
+    font-size: 14px;
+    margin-top: 8px;
+    line-height: 20px;
+}
+
+.sec_7 .sec_cnt_img {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.sec_7 .download_btn {
+    width: 145px;
+    margin: 50px 0 0 0;
+}
+
+.sec_7_desc2 {
+    margin-top: 60px;
+}
+
+.sec_Bottom {
+    padding-top: 14px;
+    padding-bottom: 10px;
+    height: 120px;
+    text-align: left;
+    font-size: 12px;
+    color: #777;
+}
+
+.sec_Bottom .sec_cnt {
+    padding: 20px 0 20px;
+}
+
+.sec_Bottom p {
+    padding-bottom: 6px;
+}

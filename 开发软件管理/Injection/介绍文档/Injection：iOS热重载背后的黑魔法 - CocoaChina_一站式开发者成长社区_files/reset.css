@@ -1,0 +1,395 @@
+/* 
+html5doctor.com Reset Stylesheet v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    list-style: none;
+    /* vertical-align:middle; */
+    box-sizing: border-box;
+    /* background:transparent; */
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', '微软雅黑', Arial, sans-serif, '\5b8b\4f53' !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* @font-face {
+  font-family: 'Microsoft Yahei';
+  src: url('https://jdi.cocosbcx.net/fonts/Microsoft Yahei.ttf')
+      format('truetype'),
+    url('https://jdi.cocosbcx.net/fonts/Microsoft Yahei.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Microsoft Yahei';
+  src: url('https://jdi.cocosbcx.net/fonts/Microsoft Yahei.ttf')
+      format('truetype'),
+    url('https://jdi.cocosbcx.net/fonts/Microsoft Yahei.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body {
+    /* color:#fff; */
+    line-height: 1;
+    font-size: 14px;
+    min-width: 320px;
+    background: #fff;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    text-decoration: none;
+    vertical-align: middle;
+    background: transparent;
+    /* color: #fff; */
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background: inherit !important;
+}
+
+.el-select-dropdown {
+    background: inherit !important;
+}
+
+input,
+button {
+    border: none;
+    display: block;
+    font-size: 15px;
+    line-height: 19px;
+    padding: 12px 10px;
+    border-radius: 6px;
+    background: inherit;
+    /* background:#33343b; */
+    -webkit-appearance: none;
+}
+
+ul {
+    background: inherit !important;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    content: '\200B';
+    clear: both;
+    height: 0;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+/* 修改input p */
+input:-moz-placeholder {
+    color: #999;
+}
+
+input::-moz-placeholder {
+    color: #999;
+}
+
+input:-ms-input-placeholder {
+    color: #999;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
+input,
+textarea,
+select,
+button,
+a:focus {
+    outline: none;
+}
+
+.el-collapse {
+    /* border-top: 1px solid rgba(255, 255, 255, 0.075); */
+    border: none;
+}
+
+.el-collapse-item__header {
+    background: #102d6c !important;
+    height: 66px !important;
+    line-height: 66px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 1000px) {
+    .el-collapse-item__header {
+        font-size: 14px;
+    }
+}
+
+.el-collapse-item__wrap {
+    background: #102d6c !important;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.el-collapse-item__content {
+    color: #fff !important;
+}
+
+.el-message--info {
+    display: none !important;
+}
+
+.btn,
+button {
+    cursor: pointer;
+}
+
+.lt {
+    float: left;
+}
+
+.rt {
+    float: right;
+}
+
+.details {
+    min-height: 400px;
+    font-size: 16px;
+    color: #29293B;
+    line-height: 26px;
+    margin: 36px 0;
+}
+
+.details p {
+    font-size: 16px;
+    color: #29293B;
+    line-height: 26px;
+    margin: 22px 0;
+}
+
+.details img {
+    max-width: 768px;
+    display: block;
+    margin: 0 auto;
+    vertical-align: top;
+}
+
+.details pre {
+    background: #f8f8f8;
+    padding: 18px 15px 12px;
+    overflow-x: scroll;
+    width: 768px;
+    box-sizing: border-box;
+}
+
+.swiper-pagination {
+    text-align: right;
+    margin-right: 20px !important;
+    width: auto !important;
+    float: right !important;
+    right: 0;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 6px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 18px;
+    height: 6px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 3px;
+    opacity: 1;
+}

@@ -1,0 +1,678 @@
+.ucenter {
+    background: #F8F8F8;
+}
+
+
+.el-radio-group {
+    margin-top: 3px;
+}
+
+.ucenter-wrap {
+    width: 1200px;
+    margin: -15px auto 54px;
+    text-align: left;
+}
+
+.ucenter-wrap .content {
+    position: relative;
+    overflow: hidden;
+}
+
+.ucenter-wrap .content .side {
+    width: 200px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 496px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px rgba(225, 225, 225, 0.5);
+}
+
+.ucenter-wrap .content .side ul {
+    width: 100%;
+}
+
+.ucenter-wrap .content .side ul li {
+    width: 100%;
+    box-sizing: border-box;
+    height: 44px;
+    line-height: 44px;
+    padding-left: 34px;
+    font-family: PingFangSC-Regular;
+    color: #333;
+    border-left: 3px solid #fff;
+    cursor: pointer;
+}
+
+.ucenter-wrap .content .side ul li:hover,
+.ucenter-wrap .content .side ul li.active {
+    background: #F8F8F8;
+    border-left: 3px solid #52C0F6;
+}
+
+.ucenter-wrap .right-contents {
+    float: right;
+    width: 985px;
+    min-height: 482px;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info {
+    width: 100%;
+    height: 120px;
+    padding: 30px 40px;
+    box-shadow: 0px 0px 10px 0px rgba(225, 225, 225, 0.5);
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .hovers .name {
+    display: flex;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .hovers .change {
+    display: none;
+    margin-left: 32px;
+    font-size: 14px;
+    color: #52c0f6;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .hovers .changes {
+    margin-left: 32px;
+    font-size: 14px;
+    color: #52c0f6;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .hovers:hover .change {
+    display: block;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .img-box {
+    position: relative;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .img-box span {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    display: block;
+    background: #000000;
+    opacity: 0.5;
+    border-radius: 100%;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 20px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-right: 15px;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .ccc {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-right: 15px;
+    background: #aaa;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .name {
+    padding: 15px 0 10px;
+    line-height: 22px;
+    font-size: 16px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #333333;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .name.active {
+    color: #52c0f6;
+}
+
+.ucenter-wrap .right-contents.ucenter .user-info .sign {
+    font-family: PingFangSC-Regular;
+    color: #666666;
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .signs {
+    max-width: 650px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ucenter-wrap .right-contents.ucenter .cut {
+    display: block;
+    width: 905px;
+    height: 1px;
+    margin-left: 40px;
+    background: #EBEBEB;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info {
+    padding: 0 40px;
+    width: 100%;
+    background: #fff;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .title {
+    font-size: 20px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    color: #2a2a2a;
+    line-height: 28px;
+    padding: 30px 0 12px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 45px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers.company {
+    margin-bottom: 0;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers.name {
+    margin-top: 12px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .el-input input {
+    height: 45px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .el-input.name-input {
+    width: 238px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .el-input.position-input {
+    width: 118px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .el-input.sign-input {
+    width: 499px;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers:hover .change {
+    display: block;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .key {
+    width: 112px;
+    color: #9b9b9b;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .val {
+    color: #333333;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .change {
+    cursor: pointer;
+    display: none;
+    margin-left: 32px;
+    font-size: 14px;
+    color: #52c0f6;
+}
+
+.ucenter-wrap .right-contents.ucenter .base-info .hovers .change.store {
+    display: block;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info {
+    padding: 30px 40px 70px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .title {
+    font-size: 20px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    color: #2a2a2a;
+    line-height: 28px;
+    padding: 30px 0 12px;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    line-height: 34px;
+    padding: 35px 0 50px;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin .key {
+    font-size: 16px;
+    font-family: PingFangSC-Regular;
+    color: #333333;
+    width: 80px;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin .val {
+    font-size: 16px;
+    font-family: PingFangSC-Regular;
+    color: #FF8012;
+    width: 100px;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin button {
+    width: 120px;
+    height: 34px;
+    text-align: center;
+    background: #52c0f6;
+    border-radius: 4px;
+    margin-left: 50px;
+    font-size: 16px;
+    font-family: PingFangSC-Regular;
+    color: #fff;
+    border: 1px solid #52c0f6;
+    box-sizing: border-box;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin.account {
+    padding: 0;
+}
+
+.ucenter-wrap .right-contents.ucenter .account-info .my-coin.account button {
+    background: #fff;
+    color: #52c0f6;
+    border: 1px solid #52c0f6;
+}
+
+.ucenter-wrap .right-contents.resource {
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px rgba(225, 225, 225, 0.5);
+    padding: 10px 30px 60px;
+}
+
+.ucenter-wrap .right-contents.resource .tabs {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.ucenter-wrap .right-contents.resource .tabs a {
+    height: 42px;
+    line-height: 42px;
+    margin-right: 35px;
+    font-size: 16px;
+    font-family: PingFangSC-Regular;
+    position: relative;
+    color: #666666;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.resource .tabs a:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #52C0F6;
+    transform: scale(0);
+}
+
+.ucenter-wrap .right-contents.resource .tabs a:hover,
+.ucenter-wrap .right-contents.resource .tabs a.active {
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    color: #2a2a2a;
+}
+
+.ucenter-wrap .right-contents.resource .tabs a:hover:after,
+.ucenter-wrap .right-contents.resource .tabs a.active:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: #52C0F6;
+    transform: scale(1);
+    transition: transform .2s;
+}
+
+.ucenter-wrap .right-contents.resource .btns {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 12px;
+    height: 66px;
+    line-height: 34px;
+}
+
+.ucenter-wrap .right-contents.resource .btns button {
+    width: 80px;
+    height: 34px;
+    margin-right: 26px;
+    background: #f3f3f3;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    color: #666;
+    padding: 0;
+    text-align: center;
+}
+
+.ucenter-wrap .right-contents.resource .btns button:hover,
+.ucenter-wrap .right-contents.resource .btns button.active {
+    background: #52c0f6;
+    color: #fff;
+}
+
+.ucenter-wrap .right-contents.resource ul {
+    width: 100%;
+}
+
+.ucenter-wrap .right-contents.resource ul li {
+    width: 100%;
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px dashed #B4B9BF;
+}
+
+.ucenter-wrap .right-contents.resource ul li .article-info {
+    width: 640px;
+}
+
+.ucenter-wrap .right-contents.resource ul li .article-info .title {
+    width: 100%;
+    height: 22px;
+    font-size: 16px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 600;
+    color: #333333;
+    line-height: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ucenter-wrap .right-contents.resource ul li .article-info .upload {
+    height: 20px;
+    margin-top: 14px;
+    color: #9b9b9b;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.resource ul li .article-info .upload span {
+    padding-right: 50px;
+}
+
+.ucenter-wrap .right-contents.resource ul li .status {
+    width: 92px;
+    text-align: center;
+    color: #52c0f6;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.resource ul li .status .error {
+    color: #ff3939;
+}
+
+.ucenter-wrap .right-contents.resource ul li .edit {
+    width: 152px;
+    text-align: right;
+    color: #666;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.assets {
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px rgba(225, 225, 225, 0.5);
+    padding: 10px 30px 60px;
+}
+
+.ucenter-wrap .right-contents.assets .balance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ucenter-wrap .right-contents.assets .balance .des {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ucenter-wrap .right-contents.assets .balance .des .money {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 28px;
+}
+
+.ucenter-wrap .right-contents.assets .balance .des .money span {
+    color: #F44A4A;
+}
+
+.ucenter-wrap .right-contents.assets .balance .des .note {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666666;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.assets .balance .reflect {
+    width: 121px;
+    height: 40px;
+    background: #52c0f6;
+    border-radius: 4px;
+    margin: 11px 83px 0 0;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ucenter-wrap .right-contents.assets .cut {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #EBEBEB;
+    margin-top: 25px;
+}
+
+.ucenter-wrap .right-contents.assets .no-list {
+    font-size: 14px;
+    color: #666666;
+    line-height: 20px;
+    margin-top: 40px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list {
+    width: 730px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th {
+    background: #f1f1f1;
+    font-size: 14px;
+    color: #333333;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .td {
+    background: #ffffff;
+    box-shadow: 0px 1px 0px 0px #ebebeb;
+    color: #666666;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th,
+.ucenter-wrap .right-contents.assets .charge-list .td {
+    border-right: 1px solid #ebebeb;
+    border-left: 1px solid #ebebeb;
+    display: flex;
+    width: 731px;
+    height: 40px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th .success,
+.ucenter-wrap .right-contents.assets .charge-list .td .success {
+    color: #52C0F6;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th .fail,
+.ucenter-wrap .right-contents.assets .charge-list .td .fail {
+    color: #F44A4A;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th div,
+.ucenter-wrap .right-contents.assets .charge-list .td div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th div:nth-of-type(1),
+.ucenter-wrap .right-contents.assets .charge-list .td div:nth-of-type(1) {
+    width: 200px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th div:nth-of-type(2),
+.ucenter-wrap .right-contents.assets .charge-list .td div:nth-of-type(2) {
+    width: 140px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th div:nth-of-type(3),
+.ucenter-wrap .right-contents.assets .charge-list .td div:nth-of-type(3) {
+    width: 200px;
+}
+
+.ucenter-wrap .right-contents.assets .charge-list .th div:nth-of-type(4),
+.ucenter-wrap .right-contents.assets .charge-list .td div:nth-of-type(4) {
+    width: 120px;
+}
+
+.ucenter-wrap .right-contents.account {
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px rgba(225, 225, 225, 0.5);
+    padding: 10px 30px 60px;
+}
+
+.ucenter-wrap .right-contents.account .title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2a2a2a;
+    line-height: 28px;
+    margin-top: 20px;
+}
+
+.ucenter-wrap .right-contents.account .title span {
+    font-size: 14px;
+    color: #9b9b9b;
+    margin-left: 20px;
+}
+
+.ucenter-wrap .right-contents.account .cut {
+    width: 100%;
+    height: 1px;
+    display: block;
+    background: #EBEBEB;
+    margin-top: 19px;
+}
+
+.ucenter-wrap .right-contents.account .messages {
+    display: flex;
+    font-size: 14px;
+    flex-direction: column;
+}
+
+.ucenter-wrap .right-contents.account .messages .message {
+    margin-top: 42px;
+    display: flex;
+}
+
+.ucenter-wrap .right-contents.account .messages .message .key {
+    width: 84px;
+    color: #666666;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.account .messages .message .value {
+    color: #333333;
+    line-height: 20px;
+    margin-left: 20px;
+}
+
+.ucenter-wrap .right-contents.account .messages .message .op {
+    margin-left: 20px;
+    color: #52c0f6;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.ucenter-wrap .right-contents.account .messages .message.first {
+    margin-top: 30px;
+}
+
+.ucenter-wrap .right-contents.account .messages .other {
+    display: flex;
+    flex-direction: column;
+    margin-top: 42px;
+}
+
+.ucenter-wrap .right-contents.account .messages .other .key {
+    color: #666666;
+    line-height: 20px;
+}
+
+.ucenter-wrap .right-contents.account .messages .other .bind {
+    display: flex;
+    flex-direction: column;
+}
+
+.ucenter-wrap .right-contents.account .messages .other .bind .chat {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.ucenter-wrap .right-contents.account .messages .other .bind .chat span {
+    color: #333333;
+    line-height: 20px;
+    margin-left: 51px;
+}
+
+.ucenter-wrap .right-contents.account .messages .other .bind .chat div {
+    width: 80px;
+    height: 30px;
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #52c0f6;
+    margin-left: 81px;
+    font-size: 16px;
+    color: #52c0f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
