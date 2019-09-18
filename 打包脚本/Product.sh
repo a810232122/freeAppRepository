@@ -1,12 +1,10 @@
 #!/bin/bash
 
-
-#当前版本为不从远程拉取最新代码，因为拉取代码需要换内网拉取
 echo "--------------------------------------------------------------------------------"
-echo "请确保本地代码为最新,本地证书也更新过，如果"
+echo "注意切换网络，本脚需要内网拉代码"
 echo "--------------------------------------------------------------------------------"
 
-
+#此处输入你的工程名字
 project_name=""
 project_extension="xcworkspace"
 
@@ -40,6 +38,14 @@ echo "--------------------------------------------------------------------------
 read project_scheme_subString
 
 project_scheme="${project_name}_$project_scheme_subString"
+if [[ $project_scheme_subString = "" ]]
+then
+project_scheme=${project_name}
+else
+echo "找到xcworkspace 文件  $project_name"
+fi
+
+
 
 build_type=Release
 
@@ -67,9 +73,18 @@ echo "export_ipa_path -----------  $export_ipa_path"
 echo "export_options_plist -----------  $export_options_plist"
 echo "--------------------------------------------------------------------------------"
 
+echo "///--------------"
+echo "/// 切换拉取代码网络"
+echo "///--------------"
 
-#先注释掉，需要上传ipa
-#pod update
+networksetup -setairportnetwork en0 ceshi-8f-10f cz@57863
+
+pod update
+
+echo "///--------------"
+echo "/// 切换打包网络"
+echo "///--------------"
+networksetup -setairportnetwork en0 CZCB-5G Abcd1234
 
 echo "///-----------"
 echo "/// 正在清理工程"
@@ -95,15 +110,3 @@ echo "/// ipa包已导出"
 echo "///-----------"
 open ${export_ipa_path}
 fi
-
-if [[ ${project_scheme_subString} = "sit" ]]; then
-curl -F "file=@${export_ipa_path}/${project_scheme}.ipa" -F "uKey=a00fd90ceaf2226d5559ff2a5a85d714" -F "_api_key=cdaeb2113c2984aff07818f4e1cd59d5" https://upload.pgyer.com/apiv1/app/upload
-fi
-
-#if [[ ${project_scheme_subString} = "uat" ]]; then
-#curl -F "file=@${export_ipa_path}/${project_scheme}.ipa" -F "uKey=a00fd90ceaf2226d5559ff2a5a85d714" -F "_api_key=cdaeb2113c2984aff07818f4e1cd59d5" https://upload.pgyer.com/apiv1/app/upload
-#fi
-
-
-
-
